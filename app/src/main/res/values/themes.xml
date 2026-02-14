@@ -1,8 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ExpenseBuddy" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.ExpenseBuddy" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:colorBackground">@color/colorBackgroundDark</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- AppBar styling -->
+        <item name="appBarLayoutStyle">@style/Widget.ExpenseBuddy.AppBarLayout</item>
+        <item name="toolbarStyle">@style/Widget.ExpenseBuddy.Toolbar</item>
+    </style>
+
+    <style name="Widget.ExpenseBuddy.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="liftOnScroll">false</item>
+        <item name="statusBarForeground">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.ExpenseBuddy.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/colorOnPrimary</item>
     </style>
 
     <style name="Theme.ExpenseBuddy" parent="Base.Theme.ExpenseBuddy" />

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- App Title -->
+            <TextView
+                android:id="@+id/tvAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_title"
+                android:textColor="@color/text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Filter Icon -->
+            <ImageView
+                android:id="@+id/ivFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_filter"
+                android:contentDescription="@string/cd_filter_icon"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Calendar Icon -->
+            <ImageView
+                android:id="@+id/ivCalendar"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_calendar"
+                android:contentDescription="@string/cd_calendar_icon"
+                app:tint="@color/text_secondary"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+
+            <!-- Current Month -->
+            <TextView
+                android:id="@+id/tvCurrentMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_month"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:layout_marginStart="6dp"
+                app:layout_constraintStart_toEndOf="@id/ivCalendar"
+                app:layout_constraintTop_toTopOf="@id/ivCalendar"
+                app:layout_constraintBottom_toBottomOf="@id/ivCalendar" />
+
+            <!-- Dropdown Arrow -->
+            <ImageView
+                android:id="@+id/ivDropdown"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_arrow_down"
+                android:contentDescription="@string/cd_dropdown_icon"
+                app:tint="@color/text_secondary"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toEndOf="@id/tvCurrentMonth"
+                app:layout_constraintTop_toTopOf="@id/tvCurrentMonth"
+                app:layout_constraintBottom_toBottomOf="@id/tvCurrentMonth" />
+
+            <!-- Chart Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardChart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/ivCalendar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+
+                    <!-- Donut Chart -->
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/chartExpenses"
+                        android:layout_width="280dp"
+                        android:layout_height="280dp"
+                        android:contentDescription="@string/cd_expense_chart"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- SPENT Label (Centered in Chart) -->
+                    <TextView
+                        android:id="@+id/tvSpentLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/spent_label"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="12sp"
+                        android:letterSpacing="0.1"
+                        app:layout_constraintTop_toTopOf="@id/chartExpenses"
+                        app:layout_constraintBottom_toBottomOf="@id/chartExpenses"
+                        app:layout_constraintStart_toStartOf="@id/chartExpenses"
+                        app:layout_constraintEnd_toEndOf="@id/chartExpenses"
+                        app:layout_constraintVertical_bias="0.42" />
+
+                    <!-- Total Spent Amount -->
+                    <TextView
+                        android:id="@+id/tvTotalSpent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="$1,580"
+                        android:textColor="@color/text_primary"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        app:layout_constraintTop_toBottomOf="@id/tvSpentLabel"
+                        app:layout_constraintStart_toStartOf="@id/chartExpenses"
+                        app:layout_constraintEnd_toEndOf="@id/chartExpenses" />
+
+                    <!-- Total Balance Label -->
+                    <TextView
+                        android:id="@+id/tvBalanceLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_balance_label"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toBottomOf="@id/chartExpenses"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Total Balance Amount -->
+                    <TextView
+                        android:id="@+id/tvTotalBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_balance"
+                        android:textColor="@color/purple_primary"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvBalanceLabel"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Total Balance Label -->
+                    <TextView
+                        android:id="@+id/tvTotalSpentInWeekLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_spent_in_week_label"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvTotalBalance"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Total Balance Amount -->
+                    <TextView
+                        android:id="@+id/tvTotalSpentInWeek"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_balance"
+                        android:textColor="@color/purple_primary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvTotalSpentInWeekLabel"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Categories Title -->
+            <TextView
+                android:id="@+id/tvCategoriesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categories_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/cardChart"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- View All Categories -->
+            <TextView
+                android:id="@+id/tvViewAllCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_all"
+                android:textColor="@color/blue_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvCategoriesTitle"
+                app:layout_constraintBottom_toBottomOf="@id/tvCategoriesTitle" />
+
+            <!-- Categories Horizontal Scroll -->
+            <HorizontalScrollView
+                android:id="@+id/scrollCategories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvCategoriesTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <include layout="@layout/quick_add_list_item_layout" />
+                    <include layout="@layout/quick_add_list_item_layout" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Quick Add Lightning Icon -->
+            <ImageView
+                android:id="@+id/ivLightning"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_lightning"
+                android:contentDescription="@string/cd_lightning_icon"
+                app:tint="@color/orange_primary"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/scrollCategories"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Quick Add Title -->
+            <TextView
+                android:id="@+id/tvQuickAddTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quick_add_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/ivLightning"
+                app:layout_constraintTop_toTopOf="@id/ivLightning"
+                app:layout_constraintBottom_toBottomOf="@id/ivLightning" />
+
+            <!-- Customize Quick Add -->
+            <TextView
+                android:id="@+id/tvCustomizeQuickAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/customize"
+                android:textColor="@color/blue_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvQuickAddTitle"
+                app:layout_constraintBottom_toBottomOf="@id/tvQuickAddTitle" />
+
+            <!-- Quick Add Buttons Scroll -->
+            <HorizontalScrollView
+                android:id="@+id/scrollQuickAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvQuickAddTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <include layout="@layout/quick_add_list_item_layout" />
+                    <include layout="@layout/quick_add_list_item_layout" />
+                    <include layout="@layout/quick_add_list_item_layout" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Recent Expenses Title -->
+            <TextView
+                android:id="@+id/tvRecentExpensesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recent_expenses_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/scrollQuickAdd"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- View History -->
+            <TextView
+                android:id="@+id/tvViewHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_history"
+                android:textColor="@color/text_tertiary"
+                android:textSize="14sp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvRecentExpensesTitle"
+                app:layout_constraintBottom_toBottomOf="@id/tvRecentExpensesTitle" />
+
+            <!-- Recent Expenses RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRecentExpenses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/tvRecentExpensesTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/quick_add_list_item_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:itemCount="2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/ic_add"
+        android:contentDescription="@string/cd_add_expense_fab"
+        app:tint="@color/white"
+        app:backgroundTint="@color/purple_primary"
+        app:elevation="6dp"
+        app:fabSize="normal" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

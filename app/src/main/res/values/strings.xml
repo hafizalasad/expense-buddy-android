@@ -7,6 +7,109 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+
+
+    <!-- Dashboard Screen -->
+    <string name="dashboard_title">Expense Buddy</string>
+    <string name="current_month">February 2026</string>
+    <string name="filter_icon">Filter</string>
+
+    <!-- Chart Section -->
+    <string name="spent_label">SPENT</string>
+    <string name="total_spent">$1,580</string>
+    <string name="total_balance_label">Total Balance</string>
+    <string name="total_spent_in_week_label">Total Spent this week</string>
+    <string name="total_balance">$2,450.00</string>
+
+    <!-- Categories Section -->
+    <string name="categories_title">Categories</string>
+    <string name="view_all">View All</string>
+
+    <!-- Category Names -->
+    <string name="category_food">Food</string>
+    <string name="category_transport">Transport</string>
+    <string name="category_entertainment">Entertainment</string>
+    <string name="category_bills">Bills</string>
+    <string name="category_shopping">Shopping</string>
+    <string name="category_health">Health</string>
+    <string name="category_other">Other</string>
+
+    <!-- Quick Add Section -->
+    <string name="quick_add_title">Quick Add</string>
+    <string name="customize">Customize</string>
+
+    <!-- Quick Add Items -->
+    <string name="quick_add_coffee">Coffee</string>
+    <string name="quick_add_coffee_amount">$5</string>
+    <string name="quick_add_lunch">Lunch</string>
+    <string name="quick_add_lunch_amount">$15</string>
+    <string name="quick_add_fuel">Fuel</string>
+    <string name="quick_add_fuel_amount">$40</string>
+    <string name="quick_add_grocery">Grocery</string>
+    <string name="quick_add_grocery_amount">$50</string>
+    <string name="quick_add_parking">Parking</string>
+    <string name="quick_add_parking_amount">$10</string>
+    <string name="quick_add_snack">Snack</string>
+    <string name="quick_add_snack_amount">$3</string>
+
+    <!-- Recent Expenses Section -->
+    <string name="recent_expenses_title">Recent Expenses</string>
+    <string name="view_history">View History</string>
+
+    <!-- Sample Expense Items -->
+    <string name="expense_starbucks">Starbucks</string>
+    <string name="expense_uber">Uber</string>
+    <string name="expense_zara">ZARA</string>
+    <string name="expense_netflix">Netflix Subscription</string>
+    <string name="expense_walmart">Walmart</string>
+
+    <!-- Time Formats -->
+    <string name="today_time">Today, %s</string>
+    <string name="yesterday_time">Yesterday, %s</string>
+    <string name="date_time">%s, %s</string>
+
+    <!-- Floating Action Button -->
+    <string name="add_expense">Add Expense</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_summary">Summary</string>
+    <string name="nav_expenses">Expenses</string>
+    <string name="nav_insights">Insights</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Content Descriptions (for accessibility) -->
+    <string name="cd_filter_icon">Filter expenses</string>
+    <string name="cd_calendar_icon">Calendar</string>
+    <string name="cd_dropdown_icon">Dropdown</string>
+    <string name="cd_expense_chart">Expense chart</string>
+    <string name="cd_category_icon">Category icon</string>
+    <string name="cd_lightning_icon">Quick add icon</string>
+    <string name="cd_add_expense_fab">Add new expense</string>
+    <string name="cd_expense_icon">Expense icon</string>
+
+    <!-- Common -->
+    <string name="currency_symbol">$</string>
+    <string name="amount_format">$%s</string>
+    <string name="negative_amount_format">-$%s</string>
+
+    <!-- Empty States -->
+    <string name="no_expenses_yet">No expenses yet</string>
+    <string name="start_tracking">Start tracking your expenses</string>
+    <string name="no_categories">No categories</string>
+
+    <!-- Error Messages -->
+    <string name="error_loading_data">Error loading data</string>
+    <string name="error_network">Network error</string>
+    <string name="error_unknown">Something went wrong</string>
+
+    <!-- Success Messages -->
+    <string name="expense_added">Expense added successfully</string>
+    <string name="expense_deleted">Expense deleted</string>
+    <string name="expense_updated">Expense updated</string>
+
+
+
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

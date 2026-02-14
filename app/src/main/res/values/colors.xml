@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">@color/colorWhite</color>
+    <color name="colorPrimary50">#800049FC</color>
+    <color name="colorPrimaryBackground">#C3D7E6</color>
+    <color name="colorPrimaryDark">#10428F</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorAccent">#0070CC</color>
+    <color name="colorSecondary">#0070CC</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorError">@android:color/holo_red_dark</color>
+    <color name="colorOnError">#FFFFFF</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#212121</color>
+    <color name="colorBackgroundDark">#EEEEEE</color>
+
+    <!-- Other Colors -->
+    <color name="colorWhite">#FFFFFF</color>
+
+    <!-- Primary Colors -->
+    <color name="purple_primary">#6366F1</color>
+    <color name="purple_gradient_start">#7C3AED</color>
+    <color name="purple_gradient_end">#5B21B6</color>
+    <color name="blue_primary">#3B82F6</color>
+    <color name="orange_primary">#F97316</color>
+
+    <!-- Category Colors -->
+    <color name="pink_category">#EC4899</color>
+    <color name="blue_category">#3B82F6</color>
+    <color name="green_category">#10B981</color>
+    <color name="yellow_category">#F59E0B</color>
+    <color name="orange_category">#F97316</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1F2937</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_tertiary">#9CA3AF</color>
+
+    <!-- Background Colors -->
+    <color name="background_white">#F9FAFB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Light Category Backgrounds -->
+    <color name="light_orange">#FFF7ED</color>
+    <color name="light_blue">#EFF6FF</color>
+    <color name="light_green">#F0FDF4</color>
 </resources>
