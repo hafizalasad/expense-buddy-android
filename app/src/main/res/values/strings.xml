@@ -7,7 +7,15 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <!-- Common -->
+    <string name="common_close">Close</string>
+    <string name="common_email">Email</string>
 
+    <!-- SignUp -->
+    <string name="sign_up">Sign Up</string>
+    <string name="signup_create_account">Create Account</string>
+    <string name="signup_hint_email">Email Address</string>
+    <string name="signup_description">Enter your email to create an account</string>
 
     <!-- Dashboard Screen -->
     <string name="dashboard_title">Expense Buddy</string>
