@@ -95,7 +95,6 @@
                 app:boxStrokeWidth="1.5dp"
                 app:boxStrokeWidthFocused="2dp"
                 app:boxBackgroundMode="outline"
-
                 app:endIconTint="@color/purple_primary"
                 app:endIconMode="custom"
                 app:errorEnabled="true"
@@ -123,7 +122,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:background="@color/purple_gradient_end" />
+                android:backgroundTint="#7f13ec"/>
 
 <!--            android:enabled="@{!viewModel.isLoading}"-->
 

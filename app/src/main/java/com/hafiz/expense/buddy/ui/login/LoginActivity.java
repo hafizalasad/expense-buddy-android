@@ -1,38 +1,66 @@
 package com.hafiz.expense.buddy.ui.login;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.os.Bundle;
+import com.hafiz.expense.buddy.MyApplication;
+import com.hafiz.expense.buddy.data.repository.AuthRepository;
+import com.hafiz.expense.buddy.databinding.LoginActivityBinding;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+public class LoginActivity extends AppCompatActivity {
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.hafiz.expense.buddy.R;
-
-public class LoginActivity extends Fragment {
-
-    private LoginViewModel mViewModel;
-
-    public static LoginActivity newInstance() {
-        return new LoginActivity();
-    }
+    private LoginActivityBinding binding;
+    private LoginViewModel viewModel;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.login_activity, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = LoginActivityBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Manual DI — get repository from App, create ViewModel via factory
+        AuthRepository repository = ((MyApplication) getApplication()).getAuthRepository();
+        LoginViewModel.Factory factory = new LoginViewModel.Factory(repository);
+        viewModel = new ViewModelProvider(this, factory).get(LoginViewModel.class);
+
+        // DataBinding connection
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
+
+
+        initListener();
+        subscribeUi();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        // TODO: Use the ViewModel
+
+    private void initListener() {
+
+        binding.btnLogin.setOnClickListener(v -> {
+            String email = viewModel.getEmail().get();
+            String password = viewModel.getPassword().get();
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            viewModel.login(email, password);
+        });
+
     }
 
+    private void subscribeUi() {
+        viewModel.getLoginState().observe(this, success -> {
+            if (success == null) return;
+
+            if (success.status != null) {
+                Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Enter email first", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
