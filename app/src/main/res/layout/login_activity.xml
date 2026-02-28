@@ -42,10 +42,15 @@
         <!-- Email Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:hint="Email address"
+            app:boxStrokeColor="@color/purple_primary"
+            app:boxStrokeWidth="1.5dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:hintTextColor="@color/purple_primary"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -55,18 +60,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.email}" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Password Input -->3aΩ
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="Email address"
+            android:hint="Password"
+            app:boxStrokeColor="@color/purple_primary"
+            app:boxStrokeWidth="1.5dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:hintTextColor="@color/purple_primary"
+            app:passwordToggleEnabled="true"
             app:layout_constraintTop_toBottomOf="@id/tilEmail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:passwordToggleEnabled="true">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPass"
@@ -74,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.password}"
                 android:inputType="textPassword" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Login Button -->
