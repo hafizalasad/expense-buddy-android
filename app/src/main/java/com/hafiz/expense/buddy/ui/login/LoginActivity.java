@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.hafiz.expense.buddy.MyApplication;
 import com.hafiz.expense.buddy.data.repository.AuthRepository;
 import com.hafiz.expense.buddy.databinding.LoginActivityBinding;
+import com.hafiz.expense.buddy.ui.signUp.SignupDialogFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,6 +49,11 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             viewModel.login(email, password);
+        });
+
+        binding.tvCreate.setOnClickListener(v -> {
+            SignupDialogFragment dialog = new SignupDialogFragment();
+            dialog.show(getSupportFragmentManager(), "SignupDialog");
         });
 
     }
