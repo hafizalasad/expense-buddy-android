@@ -23,13 +23,15 @@ public class SplashActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        TokenManager tokenManager = ((MyApplication) getApplication()).getTokenManager();
+//        TokenManager tokenManager = ((MyApplication) getApplication()).getTokenManager();
+//
+//        if (tokenManager.hasToken()) {
+//            startActivity(new Intent(this, MainActivity.class));
+//        } else {
+//            startActivity(new Intent(this, LoginActivity.class));
+//        }
 
-        if (tokenManager.hasToken()) {
-            startActivity(new Intent(this, MainActivity.class));
-        } else {
-            startActivity(new Intent(this, LoginActivity.class));
-        }
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }
