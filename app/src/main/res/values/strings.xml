@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Expense Buddy</string>
     <string name="action_settings">Settings</string>
+
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="navigation_transaction">Transaction</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -114,6 +119,81 @@
     <string name="expense_added">Expense added successfully</string>
     <string name="expense_deleted">Expense deleted</string>
     <string name="expense_updated">Expense updated</string>
+
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+       TRANSACTION TAB HOLDER
+       ═══════════════════════════════════════════════════════════════ -->
+    <string name="add_transaction">Add Transaction</string>
+    <string name="expense">Expense</string>
+    <string name="income">Income</string>
+    <string name="close">Close</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         AMOUNT
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="label_amount">Amount</string>
+    <string name="amount_default">$0.00</string>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CATEGORY
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="label_category">Category</string>
+
+    <string name="category_education">Education</string>
+    <string name="category_travel">Travel</string>
+    <string name="category_salary">Salary</string>
+    <string name="category_freelance">Freelance</string>
+    <string name="category_investment">Investment</string>
+    <string name="category_gift">Gift</string>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         DATE
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="label_date">Date</string>
+    <string name="hint_select_date">Select date</string>
+    <string name="date_format_display">dd MMMM yyyy</string>   <!-- e.g. 14 February 2026 -->
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         NOTES
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="label_notes">Notes</string>
+    <string name="hint_add_note">Add note…</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         BUTTONS
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="btn_save_expense">Save Expense</string>
+    <string name="btn_save_income">Save Income</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         VALIDATION / ERROR MESSAGES
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="error_amount_empty">Please enter an amount.</string>
+    <string name="error_amount_zero">Amount must be greater than zero.</string>
+    <string name="error_category_empty">Please select a category.</string>
+    <string name="error_date_empty">Please select a date.</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SUCCESS MESSAGES
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="success_expense_saved">Expense saved successfully!</string>
+    <string name="success_income_saved">Income saved successfully!</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CONTENT DESCRIPTIONS (Accessibility)
+         ═══════════════════════════════════════════════════════════════ -->
+    <string name="cd_close_button">Close add transaction screen</string>
+    <string name="cd_expense_tab">Switch to expense tab</string>
+    <string name="cd_income_tab">Switch to income tab</string>
+    <string name="cd_dropdown_arrow">Expand category dropdown</string>
+    <string name="cd_save_button">Save transaction</string>
 
 
 

@@ -46,4 +46,101 @@
     <color name="light_orange">#FFF7ED</color>
     <color name="light_blue">#EFF6FF</color>
     <color name="light_green">#F0FDF4</color>
+
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         BRAND / PRIMARY PALETTE
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="brand_purple">#7B2FBE</color>
+    <color name="brand_purple_dark">#5A1A9A</color>
+    <color name="brand_purple_light">#C084FC</color>
+    <color name="brand_purple_surface">#EDE7F6</color>   <!-- tab bg, chips -->
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         EXPENSE / INCOME SEMANTIC COLORS
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="expense_red">#EF4444</color>
+    <color name="expense_red_dark">#DC2626</color>
+    <color name="expense_red_surface">#FEE2E2</color>    <!-- light red bg for chips -->
+
+    <color name="income_green">#22C55E</color>
+    <color name="income_green_dark">#16A34A</color>
+    <color name="income_green_surface">#DCFCE7</color>   <!-- light green bg for chips -->
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         BACKGROUNDS
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="background_page">#F4F4F8</color>        <!-- main screen bg -->
+    <color name="background_card">#FFFFFF</color>        <!-- card / input bg -->
+    <color name="background_input">#FFFFFF</color>       <!-- text input fields -->
+    <color name="background_overlay">#80000000</color>   <!-- dim overlay / scrim -->
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         TAB TOGGLE
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="tab_background">#EDE7F6</color>         <!-- pill container bg -->
+    <color name="tab_indicator">#FFFFFF</color>          <!-- sliding white pill -->
+    <color name="tab_text_selected">#7B2FBE</color>      <!-- active tab label -->
+    <color name="tab_text_unselected">#9CA3AF</color>    <!-- inactive tab label -->
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         TEXT
+         ═══════════════════════════════════════════════════════════════ -->
+<!--    <color name="text_primary">#111827</color>           &lt;!&ndash; headings, main labels &ndash;&gt;-->
+<!--    <color name="text_secondary">#6B7280</color>        &lt;!&ndash; sub-labels, hints &ndash;&gt;-->
+    <color name="text_hint">#9CA3AF</color>              <!-- placeholder text -->
+    <color name="text_disabled">#D1D5DB</color>
+    <color name="text_on_brand">#FFFFFF</color>          <!-- text on purple button -->
+    <color name="text_on_expense">#FFFFFF</color>        <!-- text on red button -->
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         AMOUNT DISPLAY
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="amount_currency_symbol">#7B2FBE</color> <!-- $ sign -->
+    <color name="amount_value">#111827</color>           <!-- 0.00 digits -->
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ICON TINTS
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="icon_primary">#374151</color>
+    <color name="icon_secondary">#9CA3AF</color>
+    <color name="icon_brand">#7B2FBE</color>
+    <color name="icon_on_surface">#FFFFFF</color>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         DIVIDERS / BORDERS / STROKES
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="divider">#E5E7EB</color>
+    <color name="stroke_input">#E5E7EB</color>
+    <color name="stroke_input_focused">#7B2FBE</color>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SAVE BUTTON (matches screenshot's red gradient)
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="btn_save_start">#F43F5E</color>         <!-- rose-500 left -->
+    <color name="btn_save_end">#EF4444</color>           <!-- red-500 right -->
+    <color name="btn_save_text">#FFFFFF</color>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         KEYBOARD / NUMPAD
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="numpad_key_bg">#FFFFFF</color>
+    <color name="numpad_key_text">#111827</color>
+    <color name="numpad_key_pressed">#EDE7F6</color>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CALENDAR / DATE PICKER
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="calendar_icon_bg">#EDE7F6</color>
+    <color name="calendar_icon_tint">#7B2FBE</color>
+    <color name="calendar_arrow_tint">#9CA3AF</color>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SYSTEM / STATUS BAR
+         ═══════════════════════════════════════════════════════════════ -->
+    <color name="status_bar">#F4F4F8</color>
+    <color name="nav_bar">#F4F4F8</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#444444</color>
 </resources>

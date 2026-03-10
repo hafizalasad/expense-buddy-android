@@ -25,4 +25,11 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/dest_transaction"
+        android:name="com.hafiz.expense.buddy.ui.transaction.TransactionTabHolderFragment"
+        android:label="@string/navigation_transaction"
+        tools:layout="@layout/transaction_tab_holder_fragment" />
 </navigation>
