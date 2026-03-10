@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -36,9 +37,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -58,11 +56,14 @@ dependencies {
     implementation(libs.legacy.support.v4)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.core.splashscreen )
+    implementation(libs.mpandroidchart)
+    implementation(libs.firebase.firestore)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.mpandroidchart)
+
 }
 
 

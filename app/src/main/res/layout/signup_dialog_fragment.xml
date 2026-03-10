@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FILE: res/layout/dialog_signup.xml -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hafiz.expense.buddy.ui.signUp.SignupViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="20dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="30dp">
+
+            <!-- Header row: X close + Title -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivClose"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="4dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_close"
+                    android:contentDescription="@string/common_close" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/signup_create_account"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+            </RelativeLayout>
+
+            <!-- Email icon circle -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="22dp"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#f2e7fd">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_email"
+                    app:tint="#7f13ec"
+                    android:contentDescription="@string/common_email" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/signup_description"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp" />
+
+            <!-- Email TextInputLayout -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:hint="@string/signup_hint_email"
+                app:hintTextColor="@color/purple_primary"
+                app:boxStrokeColor="@color/purple_primary"
+                app:boxStrokeWidth="1.5dp"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxBackgroundMode="outline"
+                app:endIconTint="@color/purple_primary"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:text="@={viewModel.email}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Signup Button -->
+            <Button
+                android:id="@+id/btnSignup"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/sign_up"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:backgroundTint="#7f13ec"/>
+
+<!--            android:enabled="@{!viewModel.isLoading}"-->
+
+            <!-- ProgressBar overlaid on button -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-44dp"
+                android:layout_marginBottom="16dp"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
