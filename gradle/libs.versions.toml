@@ -1,6 +1,7 @@
 [versions]
 agp = "8.13.2"
 constraintlayoutVersion = "2.2.1"
+emoji = "0.23.0"
 firebaseFirestore = "26.1.1"
 gson = "2.13.2"
 junit = "4.13.2"
@@ -20,10 +21,13 @@ lifecycleLivedataKtx = "2.10.0"
 lifecycleViewmodelKtx = "2.10.0"
 
 core-splashscreen = "1.0.1"
+roomVersion = "2.8.4"
 
 [libraries]
 
 
+emoji = { module = "com.vanniktech:emoji", version.ref = "emoji" }
+emoji-google = { module = "com.vanniktech:emoji-google", version.ref = "emoji" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -46,6 +50,8 @@ lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-view
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
 
 firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

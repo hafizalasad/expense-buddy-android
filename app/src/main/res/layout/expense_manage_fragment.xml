@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#ffffff"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +62,7 @@
         </LinearLayout>
 
         <!-- Date Picker Card -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -71,6 +71,7 @@
             app:cardBackgroundColor="#f8fafc"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
+            app:strokeColor="#DDE9F2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/containerAmount">
@@ -118,7 +119,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Category Section -->
         <TextView
@@ -134,14 +135,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardDate" />
 
-        <TextView
+        <ImageButton
             android:id="@+id/tvViewAllCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="View All"
-            android:textColor="@color/purple_primary"
             android:textSize="13sp"
+            app:srcCompat="@drawable/ic_add"
+            android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="@id/labelCategory"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/labelCategory" />
@@ -158,7 +159,7 @@
             app:layout_constraintTop_toBottomOf="@id/labelCategory">
 
             <LinearLayout
-                android:id="@+id/containerCategory"
+                android:id="@+id/llCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" />
@@ -199,7 +200,7 @@
         </HorizontalScrollView>
 
         <!-- Note Field -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardNote"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -208,6 +209,7 @@
             app:cardBackgroundColor="#f8fafc"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
+            app:strokeColor="#DDE9F2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scrollPaymentType">
@@ -228,10 +230,10 @@
                 android:textColorHint="@color/colorGray"
                 android:textSize="15sp" />
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Receipt Upload Section -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardReceipt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -240,6 +242,7 @@
             app:cardBackgroundColor="#f8fafc"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
+            app:strokeColor="#DDE9F2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardNote">
@@ -264,7 +267,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="Take photo"
                         android:src="@drawable/ic_camera"
-                        android:tint="@color/colorGray" />
+                        app:tint="#94a3b8" />
 
                     <ImageButton
                         android:id="@+id/btnGallery"
@@ -274,7 +277,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="Pick from gallery"
                         android:src="@drawable/ic_gallery"
-                        android:tint="@color/colorGray" />
+                        app:tint="#94a3b8" />
 
                 </LinearLayout>
 
@@ -283,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Add receipt or image"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -292,7 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Supports JPG, PNG up to 5MB"
-                    android:textColor="@color/colorGray"
+                    android:textColor="#94a3b8"
                     android:textSize="12sp" />
 
                 <!-- Receipt preview (hidden until image selected) -->
@@ -307,7 +310,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Save Button -->
         <Button

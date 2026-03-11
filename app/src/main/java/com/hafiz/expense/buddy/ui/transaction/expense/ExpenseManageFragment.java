@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.hafiz.expense.buddy.R;
 
-public class ExpenseAddFragment extends Fragment {
+public class ExpenseManageFragment extends Fragment {
 
-    private ExpenseAddViewModel mViewModel;
+    private ExpenseManageViewModel mViewModel;
 
-    public static ExpenseAddFragment newInstance() {
-        return new ExpenseAddFragment();
+    public static ExpenseManageFragment newInstance() {
+        return new ExpenseManageFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.expense_add_fragment, container, false);
+        return inflater.inflate(R.layout.expense_manage_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ExpenseAddViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(ExpenseManageViewModel.class);
         // TODO: Use the ViewModel
     }
 

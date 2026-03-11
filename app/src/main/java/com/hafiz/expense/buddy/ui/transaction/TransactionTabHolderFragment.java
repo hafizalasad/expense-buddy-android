@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.hafiz.expense.buddy.R;
 import com.hafiz.expense.buddy.databinding.TransactionTabHolderFragmentBinding;
-import com.hafiz.expense.buddy.ui.transaction.expense.ExpenseAddFragment;
+import com.hafiz.expense.buddy.ui.transaction.expense.ExpenseManageFragment;
 
 public class TransactionTabHolderFragment extends Fragment {
     // ─── Constants ────────────────────────────────────────────────────────────
@@ -146,7 +146,7 @@ public class TransactionTabHolderFragment extends Fragment {
 
         if (tab == TransactionTab.EXPENSE) {
             if (expenseFrag == null) {
-                ft.add(R.id.fragment_container, ExpenseAddFragment.newInstance(), TAG_EXPENSE);
+                ft.add(R.id.fragment_container, ExpenseManageFragment.newInstance(), TAG_EXPENSE);
             } else {
                 ft.show(expenseFrag);
             }

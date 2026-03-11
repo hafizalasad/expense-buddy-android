@@ -63,6 +63,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.emoji.google)
+    implementation(libs.emoji)
+
+    // Room Runtime
+    implementation(libs.room.runtime)
+    // Annotation processor for Java
+    annotationProcessor(libs.room.compiler)
 
 }
 
