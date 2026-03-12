@@ -26,6 +26,7 @@ public class ExpenseManageViewModel extends AndroidViewModel {
 //        repository = new TransactionRepository;
 
         categoryRepository = CategoryRepository.getInstance(application.getApplicationContext());
+        categoryList = categoryRepository.getAll();
     }
 
     public void saveExpense(

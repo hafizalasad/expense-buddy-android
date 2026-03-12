@@ -2,10 +2,13 @@ package com.hafiz.expense.buddy.data.repository;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.hafiz.expense.buddy.data.local.AppDatabase;
 import com.hafiz.expense.buddy.data.local.dao.CategoryDao;
 import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -36,6 +39,10 @@ public class CategoryRepository {
 
     public void insert(CategoryEntity entity) {
         executorService.execute(() -> dao.insert(entity));
+    }
+
+    public LiveData<List<CategoryEntity>> getAll() {
+        return dao.getAll();
     }
 
 //    // Batch Insert (Recommended)

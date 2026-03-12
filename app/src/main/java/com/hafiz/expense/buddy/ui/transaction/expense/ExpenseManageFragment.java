@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.hafiz.expense.buddy.R;
+import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
 import com.hafiz.expense.buddy.databinding.ExpenseManageFragmentBinding;
 
 public class ExpenseManageFragment extends Fragment {
@@ -54,28 +56,28 @@ public class ExpenseManageFragment extends Fragment {
 
     private void setupObservers() {
 
-//        viewModel.categoryList.observe(getViewLifecycleOwner(), categories -> {
-//
-//            binding.llCategory.removeAllViews();
-//
-//            for(CategoryEntity category : categories){
-//
-//                TextView chip = new TextView(getContext());
-//
-//                chip.setText(category.getName());
-//                chip.setPadding(32,16,32,16);
-//
-//                chip.setBackgroundResource(android.R.drawable.btn_default);
-//
-//                chip.setOnClickListener(v -> {
-//
-//                    selectedCategoryId = category.getId();
-//                });
-//
-//                binding.llCategory.addView(chip);
-//            }
-//
-//        });
+        viewModel.categoryList.observe(getViewLifecycleOwner(), categories -> {
+
+            binding.llCategory.removeAllViews();
+
+            for(CategoryEntity category : categories){
+
+                TextView chip = new TextView(getContext());
+
+                chip.setText(category.getName());
+                chip.setPadding(32,16,32,16);
+
+                chip.setBackgroundResource(android.R.drawable.btn_default);
+
+                chip.setOnClickListener(v -> {
+
+                    selectedCategoryId = category.getId();
+                });
+
+                binding.llCategory.addView(chip);
+            }
+
+        });
     }
 
     private void setupListeners() {
