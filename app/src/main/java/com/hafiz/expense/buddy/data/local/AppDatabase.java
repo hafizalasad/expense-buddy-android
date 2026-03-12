@@ -3,23 +3,24 @@ package com.hafiz.expense.buddy.data.local;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.adapters.Converters;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.hafiz.expense.buddy.data.local.dao.CategoryDao;
 import com.hafiz.expense.buddy.data.local.dao.TransactionDao;
+import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
 import com.hafiz.expense.buddy.data.local.entity.TransactionEntity;
 
 @Database(
         entities = {
-                TransactionEntity.class
+                TransactionEntity.class,
+                CategoryEntity.class
         },
-        version = 3)
+        version = 4)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "expense-buddy-db";
@@ -75,6 +76,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
     public abstract TransactionDao transactionDao();
+
+    public abstract CategoryDao categoryDao();
 
     private void updateDatabaseCreated(Context context) {
 
