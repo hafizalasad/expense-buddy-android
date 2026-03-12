@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,10 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.hafiz.expense.buddy.R;
+import com.hafiz.expense.buddy.data.CategoryColorPalette;
 import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
+import com.hafiz.expense.buddy.databinding.DialogAddCategoryBinding;
 import com.hafiz.expense.buddy.databinding.ExpenseManageFragmentBinding;
+import com.hafiz.expense.buddy.ui.color.ColorAdapter;
+import com.hafiz.expense.buddy.utils.ColorUtils;
 
 public class ExpenseManageFragment extends Fragment {
 
@@ -60,12 +63,12 @@ public class ExpenseManageFragment extends Fragment {
 
             binding.llCategory.removeAllViews();
 
-            for(CategoryEntity category : categories){
+            for (CategoryEntity category : categories) {
 
                 TextView chip = new TextView(getContext());
 
                 chip.setText(category.getName());
-                chip.setPadding(32,16,32,16);
+                chip.setPadding(32, 16, 32, 16);
 
                 chip.setBackgroundResource(android.R.drawable.btn_default);
 
@@ -115,17 +118,31 @@ public class ExpenseManageFragment extends Fragment {
 
     private void openCategoryDialog() {
 
-        View view = LayoutInflater.from(getContext())
-                .inflate(R.layout.dialog_add_category, null);
 
-        EditText etCategoryName = view.findViewById(R.id.etCategoryName);
+        DialogAddCategoryBinding binding =
+                DialogAddCategoryBinding.inflate(LayoutInflater.from(getContext()));
+
+        ColorAdapter adapter = new ColorAdapter(
+                CategoryColorPalette.COLORS,
+                selectedColor -> {
+                    String backgroundColor;
+
+                    // generate background
+                    backgroundColor =
+                            ColorUtils.generateLightColor(selectedColor);
+
+                });
+
+        binding.rvColors.setLayoutManager(new GridLayoutManager(getContext(), 6));
+
+        binding.rvColors.setAdapter(adapter);
 
         new AlertDialog.Builder(getContext())
                 .setTitle("Add Category")
-                .setView(view)
+                .setView(binding.getRoot())
                 .setPositiveButton("Save", (dialog, which) -> {
 
-                    String name = etCategoryName.getText().toString();
+                    String name = binding.etCategoryName.getText().toString();
 
                     if (!name.isEmpty()) {
 
