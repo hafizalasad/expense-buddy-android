@@ -20,7 +20,7 @@ import com.hafiz.expense.buddy.data.local.entity.TransactionEntity;
                 TransactionEntity.class,
                 CategoryEntity.class
         },
-        version = 4)
+        version = 5)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "expense-buddy-db";

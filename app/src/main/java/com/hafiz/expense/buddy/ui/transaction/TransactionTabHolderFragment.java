@@ -55,7 +55,7 @@ public class TransactionTabHolderFragment extends Fragment {
 
         // Load default tab only on first creation (avoid re-adding on rotation)
         if (savedInstanceState == null) {
-            viewModel.selectTab(TransactionTab.EXPENSE);
+            viewModel.selectTab(TransactionTypeEnum.EXPENSE);
         }
     }
 
@@ -68,8 +68,8 @@ public class TransactionTabHolderFragment extends Fragment {
     // ─── Setup ────────────────────────────────────────────────────────────────
 
     private void setupClickListeners() {
-        binding.tabExpense.setOnClickListener(v -> viewModel.selectTab(TransactionTab.EXPENSE));
-        binding.tabIncome.setOnClickListener(v -> viewModel.selectTab(TransactionTab.INCOME));
+        binding.tabExpense.setOnClickListener(v -> viewModel.selectTab(TransactionTypeEnum.EXPENSE));
+        binding.tabIncome.setOnClickListener(v -> viewModel.selectTab(TransactionTypeEnum.INCOME));
         binding.ivClose.setOnClickListener(v -> requireActivity().onBackPressed());
     }
 
@@ -83,7 +83,7 @@ public class TransactionTabHolderFragment extends Fragment {
      * Called whenever the selected tab changes.
      * Updates visual state and swaps the child fragment.
      */
-    private void onTabChanged(@NonNull TransactionTab tab) {
+    private void onTabChanged(@NonNull TransactionTypeEnum tab) {
         updateTabIndicator(tab);
         updateTabTextStyles(tab);
         swapFragment(tab);
@@ -92,10 +92,10 @@ public class TransactionTabHolderFragment extends Fragment {
     /**
      * Translates the white pill indicator to align with the active tab.
      */
-    private void updateTabIndicator(@NonNull TransactionTab tab) {
+    private void updateTabIndicator(@NonNull TransactionTypeEnum tab) {
         binding.getRoot().post(() -> {
             // Target X is the left-edge of the active tab TextView
-            float targetX = (tab == TransactionTab.EXPENSE)
+            float targetX = (tab == TransactionTypeEnum.EXPENSE)
                     ? binding.tabExpense.getLeft()
                     : binding.tabIncome.getLeft();
 
@@ -109,8 +109,8 @@ public class TransactionTabHolderFragment extends Fragment {
     /**
      * Adjusts text color + font weight for selected / unselected tabs.
      */
-    private void updateTabTextStyles(@NonNull TransactionTab tab) {
-        boolean isExpense = (tab == TransactionTab.EXPENSE);
+    private void updateTabTextStyles(@NonNull TransactionTypeEnum tab) {
+        boolean isExpense = (tab == TransactionTypeEnum.EXPENSE);
 
         binding.tabExpense.setTextColor(
                 requireContext().getColor(isExpense
@@ -137,14 +137,14 @@ public class TransactionTabHolderFragment extends Fragment {
      * Uses hide/show when both fragments have already been added,
      * to preserve their state (scroll position, entered values, etc.).
      */
-    private void swapFragment(@NonNull TransactionTab tab) {
+    private void swapFragment(@NonNull TransactionTypeEnum tab) {
         Fragment expenseFrag = getChildFragmentManager().findFragmentByTag(TAG_EXPENSE);
         Fragment incomeFrag = getChildFragmentManager().findFragmentByTag(TAG_INCOME);
 
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
 
-        if (tab == TransactionTab.EXPENSE) {
+        if (tab == TransactionTypeEnum.EXPENSE) {
             if (expenseFrag == null) {
                 ft.add(R.id.fragment_container, ExpenseManageFragment.newInstance(), TAG_EXPENSE);
             } else {

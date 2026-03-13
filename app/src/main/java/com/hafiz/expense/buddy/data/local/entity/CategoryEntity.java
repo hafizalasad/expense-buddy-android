@@ -11,6 +11,8 @@ public class CategoryEntity {
     private String icon;
     private String color;
 
+    private String backgroundColor;
+
     public Long getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class CategoryEntity {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 }

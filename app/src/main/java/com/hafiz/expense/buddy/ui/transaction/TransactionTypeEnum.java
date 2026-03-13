@@ -1,6 +1,6 @@
 package com.hafiz.expense.buddy.ui.transaction;
 
-public enum TransactionTab {
+public enum TransactionTypeEnum {
     EXPENSE,
     INCOME
 }

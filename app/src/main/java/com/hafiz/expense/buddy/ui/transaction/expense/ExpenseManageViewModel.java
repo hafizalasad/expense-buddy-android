@@ -47,11 +47,7 @@ public class ExpenseManageViewModel extends AndroidViewModel {
         //repository.insertExpense(expense);
     }
 
-    public void createCategory(String name) {
-
-        CategoryEntity category = new CategoryEntity();
-        category.setName(name);
-
-        // repository.insertCategory(category);
+    public void saveCategory(CategoryEntity categoryEntity) {
+         categoryRepository.insert(categoryEntity);
     }
 }

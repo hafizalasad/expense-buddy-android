@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,21 +14,31 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.hafiz.expense.buddy.data.CategoryColorPalette;
 import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
 import com.hafiz.expense.buddy.databinding.DialogAddCategoryBinding;
 import com.hafiz.expense.buddy.databinding.ExpenseManageFragmentBinding;
 import com.hafiz.expense.buddy.ui.color.ColorAdapter;
+import com.hafiz.expense.buddy.ui.emoji.EmojiAdapter;
 import com.hafiz.expense.buddy.utils.ColorUtils;
+import com.vanniktech.emoji.EmojiPopup;
+import com.vanniktech.emoji.recent.RecentEmojiManager;
 
 public class ExpenseManageFragment extends Fragment {
 
+    private ExpenseManageFragmentBinding binding;
     private ExpenseManageViewModel viewModel;
 
-    private ExpenseManageFragmentBinding binding;
-
     private long selectedCategoryId = -1;
+    public static final String[] EMOJIS = {
+            "🍱","👶","🥩", "💰","🍎","🍜",
+            "🚗","🚌","✈️","⛽","🚕","🚆",
+            "🏠","💡","📱","💻","🛜",
+            "🎮","🎬","⚽","🎵","📚",
+            "🛒","👕","💊","🎁","💰"
+    };
 
     public static ExpenseManageFragment newInstance() {
         return new ExpenseManageFragment();
@@ -87,7 +98,7 @@ public class ExpenseManageFragment extends Fragment {
 
         binding.btnSaveExpense.setOnClickListener(v -> saveExpense());
 
-        binding.tvAddCategory.setOnClickListener(v -> openCategoryDialog());
+        binding.tvAddCategory.setOnClickListener(v -> handleAddCategory());
     }
 
     private void saveExpense() {
@@ -116,11 +127,28 @@ public class ExpenseManageFragment extends Fragment {
         Toast.makeText(getContext(), "Expense Saved", Toast.LENGTH_SHORT).show();
     }
 
-    private void openCategoryDialog() {
 
+    private void populateEmojiList(RecyclerView rvEmoji, TextView emojiTextView) {
 
+        EmojiAdapter adapter = new EmojiAdapter(
+                EMOJIS,
+                selectedEmoji -> {
+                    emojiTextView.setText(selectedEmoji);
+                    emojiTextView.setCompoundDrawables(null, null, null, null);
+                    rvEmoji.setVisibility(View.GONE);
+                }
+        );
+
+        rvEmoji.setLayoutManager(new GridLayoutManager(getContext(), 6));
+        rvEmoji.setAdapter(adapter);
+    }
+
+    private void handleAddCategory() {
+
+        CategoryEntity categoryEntity = new CategoryEntity();
         DialogAddCategoryBinding binding =
                 DialogAddCategoryBinding.inflate(LayoutInflater.from(getContext()));
+        populateEmojiList(binding.rvEmoji,binding.tvAddIcon);
 
         ColorAdapter adapter = new ColorAdapter(
                 CategoryColorPalette.COLORS,
@@ -130,6 +158,8 @@ public class ExpenseManageFragment extends Fragment {
                     // generate background
                     backgroundColor =
                             ColorUtils.generateLightColor(selectedColor);
+                    categoryEntity.setColor(selectedColor);
+                    categoryEntity.setBackgroundColor(backgroundColor);
 
                 });
 
@@ -137,19 +167,28 @@ public class ExpenseManageFragment extends Fragment {
 
         binding.rvColors.setAdapter(adapter);
 
-        new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle("Add Category")
                 .setView(binding.getRoot())
                 .setPositiveButton("Save", (dialog, which) -> {
 
-                    String name = binding.etCategoryName.getText().toString();
 
-                    if (!name.isEmpty()) {
-
-                        viewModel.createCategory(name);
-                    }
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+
+        binding.tvAddIcon.setOnClickListener(v-> {
+            binding.rvEmoji.setVisibility(View.VISIBLE);
+        });
+
+        binding.btnDone.setOnClickListener(v-> {
+            String name = binding.etCategoryName.getText().toString();
+
+            if (!name.isEmpty()) {
+                 categoryEntity.setName(name);
+                viewModel.saveCategory(categoryEntity);
+            }
+            alertDialog.dismiss();
+        });
     }
 }

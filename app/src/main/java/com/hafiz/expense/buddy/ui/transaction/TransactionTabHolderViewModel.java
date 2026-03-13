@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModel;
 public class TransactionTabHolderViewModel extends ViewModel {
 
     // Backing field — private, mutable
-    private final MutableLiveData<TransactionTab> selectedTab =
-            new MutableLiveData<>(TransactionTab.EXPENSE); // default
+    private final MutableLiveData<TransactionTypeEnum> selectedTab =
+            new MutableLiveData<>(TransactionTypeEnum.EXPENSE); // default
 
     // Public API — immutable for observers
-    public LiveData<TransactionTab> getSelectedTab() {
+    public LiveData<TransactionTypeEnum> getSelectedTab() {
         return selectedTab;
     }
 
@@ -22,7 +22,7 @@ public class TransactionTabHolderViewModel extends ViewModel {
      *
      * @param tab the tab to activate
      */
-    public void selectTab(@NonNull TransactionTab tab) {
+    public void selectTab(@NonNull TransactionTypeEnum tab) {
         if (tab != selectedTab.getValue()) {
             selectedTab.setValue(tab);
         }
@@ -30,10 +30,10 @@ public class TransactionTabHolderViewModel extends ViewModel {
 
     /** Convenience helpers used by unit tests or external callers. */
     public boolean isExpenseTabSelected() {
-        return selectedTab.getValue() == TransactionTab.EXPENSE;
+        return selectedTab.getValue() == TransactionTypeEnum.EXPENSE;
     }
 
     public boolean isIncomeTabSelected() {
-        return selectedTab.getValue() == TransactionTab.INCOME;
+        return selectedTab.getValue() == TransactionTypeEnum.INCOME;
     }
 }
