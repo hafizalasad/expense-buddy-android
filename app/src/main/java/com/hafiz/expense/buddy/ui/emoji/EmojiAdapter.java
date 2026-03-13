@@ -1,31 +1,44 @@
 package com.hafiz.expense.buddy.ui.emoji;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hafiz.expense.buddy.data.CategoryIconEnum;
 import com.hafiz.expense.buddy.databinding.ColorItemLayoutBinding;
 import com.hafiz.expense.buddy.databinding.DialogAddCategoryBinding;
 import com.hafiz.expense.buddy.databinding.EmojiItemLayoutBinding;
 
+import java.util.List;
+
 public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.ViewHolder> {
 
-    private String[] emojis;
+    private  CategoryIconEnum[] iconList;
     private OnEmojiClick listener;
 
+    private Context context;
+
     public interface OnEmojiClick {
-        void onClick(String emoji);
+        void onClick(CategoryIconEnum selectedIcon);
     }
 
-    public EmojiAdapter(String[] emojis, OnEmojiClick listener) {
-        this.emojis = emojis;
+    public EmojiAdapter(CategoryIconEnum[] iconList, OnEmojiClick listener, Context context) {
+        this.iconList = iconList;
         this.listener = listener;
+        this.context = context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        EmojiItemLayoutBinding binding =  EmojiItemLayoutBinding.inflate(LayoutInflater.from(parent.getContext()));
+
+        EmojiItemLayoutBinding binding =
+                EmojiItemLayoutBinding.inflate(
+                        LayoutInflater.from(parent.getContext()),
+                        parent,
+                        false
+                );
 
         return new ViewHolder(binding);
     }
@@ -33,18 +46,18 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        String emoji = emojis[position];
+        CategoryIconEnum iconEnum = iconList[position];
 
-        holder.binding.tvEmoji.setText(emoji);
+       holder.binding.tvEmoji.setImageResource(iconEnum.getIcon());
 
         holder.itemView.setOnClickListener(v -> {
-            listener.onClick(emoji);
+            listener.onClick(iconEnum);
         });
     }
 
     @Override
     public int getItemCount() {
-        return emojis.length;
+        return iconList.length;
     }
 
 

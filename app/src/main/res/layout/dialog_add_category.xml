@@ -1,66 +1,77 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="20dp"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingStart="4dp"
-    android:paddingEnd="4dp">
-    
+    android:layout_height="wrap_content">
     <LinearLayout
+        android:padding="20dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical">
-        
-        <TextView
-            android:id="@+id/tvAddIcon"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvAddIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:drawableLeftCompat="@drawable/ic_icon_add"/>
+
+            <EditText
+                android:id="@+id/etCategoryName"
+                android:hint="Category Name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/rvEmoji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/emoji_item_layout"
+            tools:itemCount="2" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvColors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="2"
+            tools:listitem="@layout/color_item_layout" />
+
+        <include
+            android:id="@+id/categoryLayout"
+            layout="@layout/category_list_item" />
+
+        <Button
+            android:id="@+id/btnDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:drawableLeftCompat="@drawable/ic_icon_add"/>
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#7f13ec"
+            android:text="Done"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardReceipt" />
 
-        <EditText
-            android:id="@+id/etCategoryName"
-            android:hint="Category Name"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-        
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:id="@+id/rvEmoji"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/emoji_item_layout"
-        tools:itemCount="2" />
+</ScrollView>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvColors"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/color_item_layout"
-        tools:itemCount="2" />
-
-    <Button
-        android:id="@+id/btnDone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#7f13ec"
-        android:text="Done"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardReceipt" />
-
-
-</LinearLayout>

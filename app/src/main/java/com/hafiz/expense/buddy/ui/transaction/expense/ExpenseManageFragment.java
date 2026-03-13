@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hafiz.expense.buddy.data.CategoryColorPalette;
+import com.hafiz.expense.buddy.data.CategoryIconEnum;
 import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
 import com.hafiz.expense.buddy.databinding.DialogAddCategoryBinding;
 import com.hafiz.expense.buddy.databinding.ExpenseManageFragmentBinding;
@@ -128,15 +129,14 @@ public class ExpenseManageFragment extends Fragment {
     }
 
 
-    private void populateEmojiList(RecyclerView rvEmoji, TextView emojiTextView) {
+    private void populateEmojiList(RecyclerView rvEmoji, TextView emojiTextView,CategoryEntity categoryEntity) {
 
         EmojiAdapter adapter = new EmojiAdapter(
-                EMOJIS,
-                selectedEmoji -> {
-                    emojiTextView.setText(selectedEmoji);
-                    emojiTextView.setCompoundDrawables(null, null, null, null);
+                CategoryIconEnum.values(),
+                selectedIconEnum -> {
+                    categoryEntity.setIcon(selectedIconEnum.name());
                     rvEmoji.setVisibility(View.GONE);
-                }
+                },getContext()
         );
 
         rvEmoji.setLayoutManager(new GridLayoutManager(getContext(), 6));
@@ -148,7 +148,7 @@ public class ExpenseManageFragment extends Fragment {
         CategoryEntity categoryEntity = new CategoryEntity();
         DialogAddCategoryBinding binding =
                 DialogAddCategoryBinding.inflate(LayoutInflater.from(getContext()));
-        populateEmojiList(binding.rvEmoji,binding.tvAddIcon);
+        populateEmojiList(binding.rvEmoji,binding.tvAddIcon,categoryEntity);
 
         ColorAdapter adapter = new ColorAdapter(
                 CategoryColorPalette.COLORS,
@@ -163,7 +163,7 @@ public class ExpenseManageFragment extends Fragment {
 
                 });
 
-        binding.rvColors.setLayoutManager(new GridLayoutManager(getContext(), 6));
+        binding.rvColors.setLayoutManager(new GridLayoutManager(getContext(), 4));
 
         binding.rvColors.setAdapter(adapter);
 
@@ -171,8 +171,6 @@ public class ExpenseManageFragment extends Fragment {
                 .setTitle("Add Category")
                 .setView(binding.getRoot())
                 .setPositiveButton("Save", (dialog, which) -> {
-
-
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
