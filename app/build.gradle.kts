@@ -71,6 +71,9 @@ dependencies {
     // Annotation processor for Java
     annotationProcessor(libs.room.compiler)
 
+    implementation (libs.glide)
+    annotationProcessor (libs.glide.compiler)
+
 }
 
 

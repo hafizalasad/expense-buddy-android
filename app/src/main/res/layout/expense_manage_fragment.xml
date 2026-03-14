@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hafiz.expense.buddy.ui.transaction.expense.ExpenseManageViewModel" />
+
+    </data>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -247,68 +258,77 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardNote">
 
-            <!-- Dashed border via background drawable -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="24dp">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/llImageSelector"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <ImageButton
-                        android:id="@+id/btnCamera"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="Take photo"
-                        android:src="@drawable/ic_camera"
-                        app:tint="#94a3b8" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/btnGallery"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="16dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="Pick from gallery"
-                        android:src="@drawable/ic_gallery"
-                        app:tint="#94a3b8" />
+                        <ImageButton
+                            android:id="@+id/btnCamera"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Take photo"
+                            android:src="@drawable/ic_camera"
+                            app:tint="#94a3b8" />
+
+                        <ImageButton
+                            android:id="@+id/btnGallery"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="16dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Pick from gallery"
+                            android:src="@drawable/ic_gallery"
+                            app:tint="#94a3b8" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Add receipt or image"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Supports JPG, PNG up to 5MB"
+                        android:textColor="#94a3b8"
+                        android:textSize="12sp" />
+
+
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Add receipt or image"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Supports JPG, PNG up to 5MB"
-                    android:textColor="#94a3b8"
-                    android:textSize="12sp" />
-
-                <!-- Receipt preview (hidden until image selected) -->
                 <ImageView
-                    android:id="@+id/ivReceiptPreview"
+                    android:visibility="gone"
+                    android:id="@+id/ivImage"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="12dp"
-                    android:contentDescription="Receipt preview"
-                    android:scaleType="centerCrop"
-                    android:visibility="gone" />
-
+                    android:layout_height="150dp"
+                    tools:src="@tools:sample/backgrounds/scenic"
+                    android:scaleType="centerCrop"/>
             </LinearLayout>
+
+            <!-- Dashed border via background drawable -->
+
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -331,3 +351,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+</layout>
