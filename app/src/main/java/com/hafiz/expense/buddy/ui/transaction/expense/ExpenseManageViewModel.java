@@ -40,7 +40,7 @@ public class ExpenseManageViewModel extends AndroidViewModel {
     public void saveExpense(
             double amount,
             String note,
-            String date,
+            long date,
             long categoryId,
             String paymentType) {
 

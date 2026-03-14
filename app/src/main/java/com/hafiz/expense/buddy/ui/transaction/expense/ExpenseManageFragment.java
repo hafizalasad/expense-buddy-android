@@ -172,15 +172,15 @@ public class ExpenseManageFragment extends Fragment {
 
         String note = binding.etNote.getText().toString();
 
-        String date = binding.tvSelectedDate.getText().toString();
 
-        viewModel.saveExpense(
-                amount,
-                note,
-                date,
-                selectedCategoryId,
-                "Cash"
-        );
+
+//        viewModel.saveExpense(
+//                amount,
+//                note,
+//                date,
+//                selectedCategoryId,
+//                "Cash"
+//        );
 
         Toast.makeText(getContext(), "Expense Saved", Toast.LENGTH_SHORT).show();
     }

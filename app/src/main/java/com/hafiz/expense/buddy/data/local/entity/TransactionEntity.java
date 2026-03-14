@@ -13,13 +13,13 @@ public class TransactionEntity {
 
     public String note;
 
-    public String date;
+    public long date;
 
     public long categoryId;
 
     public String paymentType;
 
-    public String receiptPath;
+    public String imagePath;
 
     public Long getId() {
         return id;
@@ -49,11 +49,11 @@ public class TransactionEntity {
         this.note = note;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
@@ -73,11 +73,11 @@ public class TransactionEntity {
         this.paymentType = paymentType;
     }
 
-    public String getReceiptPath() {
-        return receiptPath;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setReceiptPath(String receiptPath) {
-        this.receiptPath = receiptPath;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
