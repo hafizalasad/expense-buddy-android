@@ -35,5 +35,15 @@ public enum CategoryIconEnum {
         return null;
     }
 
+    public static CategoryIconEnum findByName(String name) {
+
+        for (CategoryIconEnum enumItem : CategoryIconEnum.values()) {
+            if (enumItem.name().equals(name)) {
+                return enumItem;
+            }
+        }
+        return null;
+    }
+
 
 }

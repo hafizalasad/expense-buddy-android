@@ -1,17 +1,19 @@
 package com.hafiz.expense.buddy.ui.transaction.expense;
 
 import android.app.AlertDialog;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,13 +21,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hafiz.expense.buddy.data.CategoryColorPalette;
 import com.hafiz.expense.buddy.data.CategoryIconEnum;
 import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
+import com.hafiz.expense.buddy.databinding.CategoryListItemBinding;
 import com.hafiz.expense.buddy.databinding.DialogAddCategoryBinding;
 import com.hafiz.expense.buddy.databinding.ExpenseManageFragmentBinding;
 import com.hafiz.expense.buddy.ui.color.ColorAdapter;
 import com.hafiz.expense.buddy.ui.emoji.EmojiAdapter;
 import com.hafiz.expense.buddy.utils.ColorUtils;
-import com.vanniktech.emoji.EmojiPopup;
-import com.vanniktech.emoji.recent.RecentEmojiManager;
+
+import java.util.List;
 
 public class ExpenseManageFragment extends Fragment {
 
@@ -33,13 +36,6 @@ public class ExpenseManageFragment extends Fragment {
     private ExpenseManageViewModel viewModel;
 
     private long selectedCategoryId = -1;
-    public static final String[] EMOJIS = {
-            "🍱","👶","🥩", "💰","🍎","🍜",
-            "🚗","🚌","✈️","⛽","🚕","🚆",
-            "🏠","💡","📱","💻","🛜",
-            "🎮","🎬","⚽","🎵","📚",
-            "🛒","👕","💊","🎁","💰"
-    };
 
     public static ExpenseManageFragment newInstance() {
         return new ExpenseManageFragment();
@@ -64,39 +60,48 @@ public class ExpenseManageFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(ExpenseManageViewModel.class);
 
-        setupObservers();
+        subscribeData();
 
         setupListeners();
     }
 
-    private void setupObservers() {
+    private void subscribeData() {
+        subscribeCategoryList(viewModel.categoryList);
+    }
 
-        viewModel.categoryList.observe(getViewLifecycleOwner(), categories -> {
-
+    private void subscribeCategoryList(LiveData<List<CategoryEntity>> liveData) {
+        liveData.observe(getViewLifecycleOwner(), list -> {
             binding.llCategory.removeAllViews();
 
-            for (CategoryEntity category : categories) {
+            if (list == null) return;
 
-                TextView chip = new TextView(getContext());
+            for (CategoryEntity category : list) {
 
-                chip.setText(category.getName());
-                chip.setPadding(32, 16, 32, 16);
+                CategoryListItemBinding mBinding =
+                        CategoryListItemBinding.inflate(LayoutInflater.from(getContext()));
 
-                chip.setBackgroundResource(android.R.drawable.btn_default);
+                CategoryIconEnum iconEnum = CategoryIconEnum.findByName(category.getIcon());
 
-                chip.setOnClickListener(v -> {
+                if (iconEnum != null) {
+                    mBinding.ivIcon.setImageResource(iconEnum.getIcon());
+                    mBinding.ivIcon.setBackgroundTintList(
+                            ColorStateList.valueOf(Color.parseColor(category.getBackgroundColor()))
+                    );
+                }
+
+                mBinding.tvTitle.setText(category.getName());
+
+                mBinding.ivIcon.setOnClickListener(v -> {
 
                     selectedCategoryId = category.getId();
                 });
 
-                binding.llCategory.addView(chip);
+                binding.llCategory.addView(mBinding.getRoot());
             }
-
         });
     }
 
     private void setupListeners() {
-
         binding.btnSaveExpense.setOnClickListener(v -> saveExpense());
 
         binding.tvAddCategory.setOnClickListener(v -> handleAddCategory());
@@ -129,14 +134,14 @@ public class ExpenseManageFragment extends Fragment {
     }
 
 
-    private void populateEmojiList(RecyclerView rvEmoji, TextView emojiTextView,CategoryEntity categoryEntity) {
+    private void populateEmojiList(RecyclerView rvEmoji, TextView emojiTextView, CategoryEntity categoryEntity) {
 
         EmojiAdapter adapter = new EmojiAdapter(
                 CategoryIconEnum.values(),
                 selectedIconEnum -> {
                     categoryEntity.setIcon(selectedIconEnum.name());
                     rvEmoji.setVisibility(View.GONE);
-                },getContext()
+                }, getContext()
         );
 
         rvEmoji.setLayoutManager(new GridLayoutManager(getContext(), 6));
@@ -148,7 +153,7 @@ public class ExpenseManageFragment extends Fragment {
         CategoryEntity categoryEntity = new CategoryEntity();
         DialogAddCategoryBinding binding =
                 DialogAddCategoryBinding.inflate(LayoutInflater.from(getContext()));
-        populateEmojiList(binding.rvEmoji,binding.tvAddIcon,categoryEntity);
+        populateEmojiList(binding.rvEmoji, binding.tvAddIcon, categoryEntity);
 
         ColorAdapter adapter = new ColorAdapter(
                 CategoryColorPalette.COLORS,
@@ -175,15 +180,15 @@ public class ExpenseManageFragment extends Fragment {
                 .setNegativeButton("Cancel", null)
                 .show();
 
-        binding.tvAddIcon.setOnClickListener(v-> {
+        binding.tvAddIcon.setOnClickListener(v -> {
             binding.rvEmoji.setVisibility(View.VISIBLE);
         });
 
-        binding.btnDone.setOnClickListener(v-> {
+        binding.btnDone.setOnClickListener(v -> {
             String name = binding.etCategoryName.getText().toString();
 
             if (!name.isEmpty()) {
-                 categoryEntity.setName(name);
+                categoryEntity.setName(name);
                 viewModel.saveCategory(categoryEntity);
             }
             alertDialog.dismiss();
