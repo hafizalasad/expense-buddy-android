@@ -7,13 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
 import com.hafiz.expense.buddy.data.local.entity.TransactionEntity;
 import com.hafiz.expense.buddy.data.repository.CategoryRepository;
 import com.hafiz.expense.buddy.utils.FileUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,6 +30,20 @@ public class ExpenseManageViewModel extends AndroidViewModel {
     public LiveData<List<CategoryEntity>> categoryList;
 
     private final MutableLiveData<String> selectedImagePath = new MutableLiveData<>();
+
+    private static final SimpleDateFormat DATE_FORMAT =
+            new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+
+    // Stored as long (epoch ms) — matches Room column type
+    private final MutableLiveData<Long> selectedDateMillis =
+            new MutableLiveData<>(System.currentTimeMillis()); // default: today
+
+    // Derived from selectedDateMillis — drives tvSelectedDate via DataBinding
+    // Transformations.map keeps formatting off the UI thread and in the ViewModel where it belongs
+    public final LiveData<String> formattedDate = Transformations.map(
+            selectedDateMillis,
+            millis -> DATE_FORMAT.format(new Date(millis))
+    );
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public ExpenseManageViewModel(@NonNull Application application) {
@@ -71,6 +89,18 @@ public class ExpenseManageViewModel extends AndroidViewModel {
 
     public LiveData<String> getSelectedImagePath() {
         return selectedImagePath;
+    }
+
+    public void onDateSelected(long epochMillis) {
+        selectedDateMillis.setValue(epochMillis);
+    }
+
+    /**
+     * Returns the raw long for saving to Room
+     */
+    public long getSelectedDateMillis() {
+        Long value = selectedDateMillis.getValue();
+        return value != null ? value : System.currentTimeMillis();
     }
 
 }

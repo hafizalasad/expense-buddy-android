@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.hafiz.expense.buddy.data.CategoryColorPalette;
 import com.hafiz.expense.buddy.data.CategoryIconEnum;
 import com.hafiz.expense.buddy.data.local.entity.CategoryEntity;
@@ -79,10 +80,10 @@ public class ExpenseManageFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState
-    ) {
+            @Nullable Bundle savedInstanceState) {
 
         binding = ExpenseManageFragmentBinding.inflate(inflater, container, false);
+        binding.setLifecycleOwner(this);
 
         return binding.getRoot();
     }
@@ -93,6 +94,7 @@ public class ExpenseManageFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(ExpenseManageViewModel.class);
+        binding.setViewModel(viewModel);
 
         subscribeData();
 
@@ -104,9 +106,7 @@ public class ExpenseManageFragment extends Fragment {
     private void initListener() {
         binding.btnGallery.setOnClickListener(v -> pickFromGallery.launch("image/*"));
         binding.btnCamera.setOnClickListener(v -> checkCameraPermissionThenLaunch());
-
-        // getViewLifecycleOwner() — never use 'this' in Fragment observers
-        viewModel.getSelectedImagePath().observe(getViewLifecycleOwner(), this::displayImage);
+        binding.ivDate.setOnClickListener(v -> showDatePicker());
     }
 
     private void subscribeData() {
@@ -159,30 +159,20 @@ public class ExpenseManageFragment extends Fragment {
         binding.tvAddCategory.setOnClickListener(v -> handleAddCategory());
     }
 
-    private void saveExpense() {
+    private void showDatePicker() {
+        MaterialDatePicker<Long> picker = MaterialDatePicker.Builder
+                .datePicker()
+                .setTitleText("Select Date")
+                .setSelection(viewModel.getSelectedDateMillis()) // opens on currently selected date
+                .build();
 
-        String amountStr = binding.etAmount.getText().toString();
+        // Use getChildFragmentManager() inside a Fragment — never getParentFragmentManager()
+        picker.show(getChildFragmentManager(), "DATE_PICKER");
 
-        if (amountStr.isEmpty()) {
-            binding.etAmount.setError("Enter amount");
-            return;
-        }
-
-        double amount = Double.parseDouble(amountStr);
-
-        String note = binding.etNote.getText().toString();
-
-
-
-//        viewModel.saveExpense(
-//                amount,
-//                note,
-//                date,
-//                selectedCategoryId,
-//                "Cash"
-//        );
-
-        Toast.makeText(getContext(), "Expense Saved", Toast.LENGTH_SHORT).show();
+        picker.addOnPositiveButtonClickListener(selection ->
+                        viewModel.onDateSelected(selection)
+                // DataBinding + LiveData auto-updates tvSelectedDate — no setText() needed
+        );
     }
 
 
@@ -245,6 +235,31 @@ public class ExpenseManageFragment extends Fragment {
             }
             alertDialog.dismiss();
         });
+    }
+
+    private void saveExpense() {
+
+        String amountStr = binding.etAmount.getText().toString();
+
+        if (amountStr.isEmpty()) {
+            binding.etAmount.setError("Enter amount");
+            return;
+        }
+
+        double amount = Double.parseDouble(amountStr);
+
+        String note = binding.etNote.getText().toString();
+
+
+//        viewModel.saveExpense(
+//                amount,
+//                note,
+//                date,
+//                selectedCategoryId,
+//                "Cash"
+//        );
+
+        Toast.makeText(getContext(), "Expense Saved", Toast.LENGTH_SHORT).show();
     }
 
 
